@@ -2,13 +2,13 @@
 
 <div class="container">
     <div class="header">
-        <div class="date">@DateTime.Now.ToString("MMMM dd, yyyy")</div>
+        <div class="date">@DateTime.Today.ToString("MMMM yyyy")</div>
         <div class="adhkar">Adhkar</div>
         <div class="hijri-date">Jumada II 28, 1446 AH</div>
     </div>
 
     <div class="time-display">
-        <div class="time">9:54 PM</div>
+        <div class="time">@currentTime.ToString("h:mm tt")</div>
         <div class="verse">
             <p>وَاتَّقُوا يَوْمًا لَّا تَجْزِى نَفْسٌ عَن نَّفْسٍ شَيْئًا وَلَا يُقْبَلُ مِنْهَا عَدْلٌ وَلَا تَنفَعُهَا شَفَاعَةٌ وَلَا هُمْ يُنصَرُونَ</p>
             <p>(123) And fear a Day when no soul will suffice for another soul at all, and no compensation will be accepted from it, nor will any intercession benefit it, nor will they be aided.</p>
@@ -28,6 +28,7 @@
 
 @code {
     private PrayerTimes prayerTimes = new();
+    private DateTime currentTime = DateTime.Now;
 
     protected override async Task OnInitializedAsync()
     {
