@@ -1,4 +1,5 @@
 ﻿@inherits LayoutComponentBase
+@using PrayerTimesHybrid.Components.Pages
 
 <div class="page">
     <div class="sidebar">
@@ -7,7 +8,9 @@
 
     <main>
         <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
+            <div class="date">@DateTime.Today.ToString("dd MMMM yyyy")</div>
+            <div class="adhkar">Adhkar</div>
+            <HijriDateDisplay />
         </div>
 
         <article class="content px-4">

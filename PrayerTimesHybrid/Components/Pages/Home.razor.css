@@ -7,14 +7,6 @@
     font-family: sans-serif; /* Example font */
 }
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    width: 90%;
-    margin-top: 20px;
-    color: #333;
-}
-
 .time-display {
     display: flex;
     flex-direction: column;

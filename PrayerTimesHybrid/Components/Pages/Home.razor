@@ -4,7 +4,7 @@
     <div class="header">
         <div class="date">@DateTime.Today.ToString("dd MMMM yyyy")</div>
         <div class="adhkar">Adhkar</div>
-        <div class="hijri-date">Jumada II 28, 1446 AH</div>
+        <HijriDateDisplay />
     </div>
 
     <div class="time-display">
@@ -29,6 +29,29 @@
 @code {
     private PrayerTimes prayerTimes = new();
     private DateTime currentTime = DateTime.Now;
+
+    private string hijriDate = string.Empty;
+
+    protected override void OnInitialized()
+    {
+        DateTime gregorianDate = DateTime.Now;
+        HijriCalendar hijriCalendar = new HijriCalendar();
+
+        int hijriYear = hijriCalendar.GetYear(gregorianDate);
+        int hijriMonth = hijriCalendar.GetMonth(gregorianDate);
+        int hijriDay = hijriCalendar.GetDayOfMonth(gregorianDate);
+
+        // *** KEY CHANGE: Use a specific Arabic culture that preserves month names ***
+        CultureInfo arSA = new CultureInfo("ar-SA"); // Saudi Arabia
+                                                     // Or "ar" for a more general Arabic culture if needed.
+
+        // *** Use a specific DateTimeFormatInfo to get the correct names ***
+        DateTimeFormatInfo dtfi = arSA.DateTimeFormat;
+        string hijriMonthName = dtfi.GetMonthName(hijriMonth);
+
+        // Format the Hijri date string (using right-to-left formatting)
+        hijriDate = $"{hijriDay} {hijriMonthName}، {hijriYear} هـ";
+    }
 
     protected override async Task OnInitializedAsync()
     {
