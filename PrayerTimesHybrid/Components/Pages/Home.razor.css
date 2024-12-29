@@ -1,0 +1,45 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    height: 100vh;
+    background-color: #f0f0f0; /* Example background color */
+    font-family: sans-serif; /* Example font */
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin-top: 20px;
+    color: #333;
+}
+
+.time-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    color: #333;
+    text-align: center;
+}
+
+.time {
+    font-size: 4em;
+    font-weight: bold;
+}
+
+.verse {
+    margin-top: 20px;
+    width: 80%;
+}
+
+.prayer-times {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping to the next line */
+    justify-content: space-around; /* Distribute space around items */
+    gap: 10px;
+    width: 90%;
+    margin-top: 50px;
+    color: #333;
+}

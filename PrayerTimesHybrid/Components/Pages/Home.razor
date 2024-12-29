@@ -1,0 +1,53 @@
+﻿@page "/"
+
+<div class="container">
+    <div class="header">
+        <div class="date">@DateTime.Now.ToString("MMMM dd, yyyy")</div>
+        <div class="adhkar">Adhkar</div>
+        <div class="hijri-date">Jumada II 28, 1446 AH</div>
+    </div>
+
+    <div class="time-display">
+        <div class="time">9:54 PM</div>
+        <div class="verse">
+            <p>وَاتَّقُوا يَوْمًا لَّا تَجْزِى نَفْسٌ عَن نَّفْسٍ شَيْئًا وَلَا يُقْبَلُ مِنْهَا عَدْلٌ وَلَا تَنفَعُهَا شَفَاعَةٌ وَلَا هُمْ يُنصَرُونَ</p>
+            <p>(123) And fear a Day when no soul will suffice for another soul at all, and no compensation will be accepted from it, nor will any intercession benefit it, nor will they be aided.</p>
+            <p>Al-Baqara(2:123)</p>
+        </div>
+    </div>
+
+    <div class="prayer-times">
+        <PrayerTime PrayerName="Fajr" PrayerValue="@prayerTimes.FajrTime.ToString("hh:mm tt")" />
+        <PrayerTime PrayerName="Sunrise" PrayerValue="@prayerTimes.SunriseTime.ToString("hh:mm tt")" />
+        <PrayerTime PrayerName="Dhuhr" PrayerValue="@prayerTimes.DhuhrTime.ToString("hh:mm tt")" />
+        <PrayerTime PrayerName="Asr" PrayerValue="@prayerTimes.AsrTime.ToString("hh:mm tt")" />
+        <PrayerTime PrayerName="Maghrib" PrayerValue="@prayerTimes.MaghribTime.ToString("hh:mm tt")" />
+        <PrayerTime PrayerName="Isha" PrayerValue="@prayerTimes.IshaTime.ToString("hh:mm tt")" />
+    </div>
+</div>
+
+@code {
+    private PrayerTimes prayerTimes = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        // ... Get Prayer Times
+        prayerTimes = await GetPrayerTimesAsync();
+    }
+    
+    public class PrayerTimes
+    {
+        public DateTime FajrTime { get; set; } = DateTime.Now;
+        public DateTime SunriseTime { get; set; } = DateTime.Now;
+        public DateTime DhuhrTime { get; set; } = DateTime.Now;
+        public DateTime AsrTime { get; set; } = DateTime.Now;
+        public DateTime MaghribTime { get; set; } = DateTime.Now;
+        public DateTime IshaTime { get; set; } = DateTime.Now;
+    }
+
+    private async Task<PrayerTimes> GetPrayerTimesAsync()
+    {
+        await Task.Delay(1000); // Simulate API call
+        return new PrayerTimes();
+    }
+}
