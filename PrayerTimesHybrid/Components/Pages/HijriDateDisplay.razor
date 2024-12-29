@@ -1,22 +1,10 @@
-﻿<div class="hijri-date">@hijriDate</div>
+﻿<div class="hijri-date">@GetArabicDate</div>
 
 @code {
-    private string hijriDate = string.Empty;
-
-    protected override void OnInitialized()
+    private string GetArabicDate(DateTime date)
     {
-        DateTime gregorianDate = DateTime.Now;
-        HijriCalendar hijriCalendar = new HijriCalendar();
-
-        int hijriYear = hijriCalendar.GetYear(gregorianDate);
-        int hijriMonth = hijriCalendar.GetMonth(gregorianDate);
-        int hijriDay = hijriCalendar.GetDayOfMonth(gregorianDate);
-
-        CultureInfo arSA = new CultureInfo("ar-SA");
-        DateTimeFormatInfo dtfi = arSA.DateTimeFormat;
-        string hijriMonthName = dtfi.GetMonthName(hijriMonth);
-
-        hijriDate = $"{hijriDay} {hijriMonthName}، {hijriYear} هـ";
+        CultureInfo arSA = new CultureInfo("ar-SA"); // Or another relevant Arabic culture
+        return date.ToString("dd MMMM yyyy", arSA);
     }
 }
 
