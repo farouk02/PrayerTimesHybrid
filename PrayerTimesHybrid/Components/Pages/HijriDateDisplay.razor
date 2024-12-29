@@ -1,0 +1,29 @@
+﻿<div class="hijri-date">@hijriDate</div>
+
+@code {
+    private string hijriDate;
+
+    protected override void OnInitialized()
+    {
+        DateTime gregorianDate = DateTime.Now;
+        HijriCalendar hijriCalendar = new HijriCalendar();
+
+        int hijriYear = hijriCalendar.GetYear(gregorianDate);
+        int hijriMonth = hijriCalendar.GetMonth(gregorianDate);
+        int hijriDay = hijriCalendar.GetDayOfMonth(gregorianDate);
+
+        CultureInfo arSA = new CultureInfo("ar-SA");
+        DateTimeFormatInfo dtfi = arSA.DateTimeFormat;
+        string hijriMonthName = dtfi.GetMonthName(hijriMonth);
+
+        hijriDate = $"{hijriDay} {hijriMonthName}، {hijriYear} هـ";
+    }
+}
+
+<style>
+    .hijri-date {
+        /* Add any specific styling for the Hijri date here */
+        direction: rtl; /* Important for right-to-left text */
+        text-align: right;
+    }
+</style>
