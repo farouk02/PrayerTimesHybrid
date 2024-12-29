@@ -1,0 +1,17 @@
+﻿<div class="hijri-date">@GetArabicDate(DateTime.Today)</div>
+
+@code {
+    private string GetArabicDate(DateTime date)
+    {
+        CultureInfo arSA = new CultureInfo("ar-DZ"); // Or another relevant Arabic culture
+        return date.ToString("dd MMMM yyyy", arSA);
+    }
+}
+
+<style>
+    .hijri-date {
+        /* Add any specific styling for the Hijri date here */
+        direction: rtl; /* Important for right-to-left text */
+        text-align: right;
+    }
+</style>

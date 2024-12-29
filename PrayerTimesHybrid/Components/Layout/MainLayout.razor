@@ -8,7 +8,7 @@
 
     <main>
         <div class="top-row px-4">
-            <div class="date">@GetArabicDate(DateTime.Today)</div>
+            <DateDisplay />
             <div class="adhkar">Adhkar</div>
             <HijriDateDisplay />
         </div>
@@ -18,11 +18,3 @@
         </article>
     </main>
 </div>
-
-@code {
-    private string GetArabicDate(DateTime date)
-    {
-        CultureInfo arSA = new CultureInfo("ar-DZ"); // Or another relevant Arabic culture
-        return date.ToString("dd MMMM yyyy", arSA);
-    }
-}
